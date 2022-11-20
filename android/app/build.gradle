@@ -34,7 +34,7 @@ android {
 
 
     defaultConfig {
-        applicationId "com.tibicletask.com"
+        applicationId "com.tibicletask.app"
         minSdkVersion 21
         targetSdkVersion 31
         versionCode flutterVersionCode.toInteger()
