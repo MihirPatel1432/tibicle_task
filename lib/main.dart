@@ -45,7 +45,7 @@ class MyAppState extends State<MyApp> {
         final _appTheme = AppTheme.of(context);
         return ScreenUtilInit(
           designSize: _appTheme.designSize,
-          builder: (_, __) => Stack(
+          builder: () => Stack(
             children: <Widget>[
               StreamBuilder<bool?>(
                   initialData: false,

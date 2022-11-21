@@ -4,11 +4,10 @@ import 'package:get/get.dart';
 
 import '../../../models/mobile_item_response.dart';
 
-class HomeController extends SuperController with GetSingleTickerProviderStateMixin{
-
+class HomeController extends SuperController
+    with GetSingleTickerProviderStateMixin {
   TabController? tabController;
   RxList<MobileItemResponse> mobileList = <MobileItemResponse>[].obs;
-
 
   @override
   void onInit() {
@@ -37,18 +36,25 @@ class HomeController extends SuperController with GetSingleTickerProviderStateMi
     // TODO: implement onResumed
   }
 
-
   Future<void> getMobileList() async {
-    ApiProvider().get('https://scb-test-mobile.herokuapp.com/api/mobiles/').then((value){
-      if(value.statusCode == 200){
+    change(null, status: RxStatus.loading());
+    ApiProvider()
+        .get('https://scb-test-mobile.herokuapp.com/api/mobiles/')
+        .then((value) {
+      if (value.statusCode == 200) {
         final response = value.body as List<dynamic>;
-        for(int i = 0; i < response.length ; i ++){
+        for (int i = 0; i < response.length; i++) {
           mobileList.add(MobileItemResponse.fromJson(response[i]));
         }
+        if (mobileList.isNotEmpty) {
+          change(null, status: RxStatus.success());
+        } else {
+          change(null, status: RxStatus.empty());
+        }
         debugPrint('@48:::${mobileList.length}');
+      }else{
+        change(null,status: RxStatus.error());
       }
     });
-
   }
-
 }

@@ -28,6 +28,7 @@ dependencies:
   connectivity: ^3.0.6
   cached_network_image: ^3.2.2
   carousel_indicator: ^1.0.6
+  flutter_swipe_action_cell: ^3.0.4
 
 
 

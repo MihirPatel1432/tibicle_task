@@ -15,7 +15,7 @@ class MobileDetailView extends GetView<MobileDetailController> {
       appBar: AppBar(
         automaticallyImplyLeading: true,
         centerTitle: true,
-        title: Text('Mobile Detail'),
+        title: const Text('Mobile Detail'),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -72,7 +72,7 @@ class MobileDetailView extends GetView<MobileDetailController> {
                               borderRadius: BorderRadius.circular(80.r),
                               color: Colors.cyan),
                           child: Text(
-                              'Rating : ${controller.mobileItemResponse?.price}',
+                              'Rating : ${controller.mobileItemResponse?.rating}',
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
