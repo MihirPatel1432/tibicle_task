@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutterprojectsetup/ui/common/routes.dart';
 import 'package:flutterprojectsetup/ui/home/controller/home_controller.dart';
 import 'package:get/get.dart';
 
@@ -61,27 +62,33 @@ class FavouriteTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(
-          () => ListView.separated(
+      () => ListView.separated(
           separatorBuilder: (_, __) => SizedBox(height: 30.h),
           padding:
-          EdgeInsets.only(top: 30.h, bottom: 30.h, right: 60.w, left: 60.w),
+              EdgeInsets.only(top: 30.h, bottom: 30.h, right: 60.w, left: 60.w),
           shrinkWrap: true,
           itemCount: controller.mobileList.length,
           scrollDirection: Axis.vertical,
           itemBuilder: (context, index) {
-            if(controller.mobileList[index].isLiked ?? false) {
-              return CommonMobileItem(
-                  image: controller.mobileList[index].thumbImageURL ?? '',
-                  title: controller.mobileList[index].name ?? '',
-                  description: controller.mobileList[index].description ?? '',
-                  price: controller.mobileList[index].price.toString() ?? '',
-                  rating: controller.mobileList[index].rating.toString() ?? '',
-                  isLiked: controller.mobileList[index].isLiked ?? false,
-                  callback: () {
-                    controller.mobileList[index].isLiked =
-                    !(controller.mobileList[index].isLiked ?? false);
-                    controller.mobileList.refresh();
-                  });
+            if (controller.mobileList[index].isLiked ?? false) {
+              return GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onTap: () => Get.toNamed(RouteName.mobileDetail,
+                    arguments: controller.mobileList[index]),
+                child: CommonMobileItem(
+                    image: controller.mobileList[index].thumbImageURL ?? '',
+                    title: controller.mobileList[index].name ?? '',
+                    description: controller.mobileList[index].description ?? '',
+                    price: controller.mobileList[index].price.toString() ?? '',
+                    rating:
+                        controller.mobileList[index].rating.toString() ?? '',
+                    isLiked: controller.mobileList[index].isLiked ?? false,
+                    callback: () {
+                      controller.mobileList[index].isLiked =
+                          !(controller.mobileList[index].isLiked ?? false);
+                      controller.mobileList.refresh();
+                    }),
+              );
             } else {
               return const Offstage();
             }
@@ -105,18 +112,24 @@ class NormalTab extends StatelessWidget {
           shrinkWrap: true,
           itemCount: controller.mobileList.length,
           scrollDirection: Axis.vertical,
-          itemBuilder: (context, index) => CommonMobileItem(
-              image: controller.mobileList[index].thumbImageURL ?? '',
-              title: controller.mobileList[index].name ?? '',
-              description: controller.mobileList[index].description ?? '',
-              price: controller.mobileList[index].price.toString() ?? '',
-              rating: controller.mobileList[index].rating.toString() ?? '',
-              isLiked: controller.mobileList[index].isLiked ?? false,
-              callback: () {
-                controller.mobileList[index].isLiked =
-                    !(controller.mobileList[index].isLiked ?? false);
-                controller.mobileList.refresh();
-              })),
+          itemBuilder: (context, index) => GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onTap: () => Get.toNamed(RouteName.mobileDetail,
+                    arguments: controller.mobileList[index]),
+                child: CommonMobileItem(
+                    image: controller.mobileList[index].thumbImageURL ?? '',
+                    title: controller.mobileList[index].name ?? '',
+                    description: controller.mobileList[index].description ?? '',
+                    price: controller.mobileList[index].price.toString() ?? '',
+                    rating:
+                        controller.mobileList[index].rating.toString() ?? '',
+                    isLiked: controller.mobileList[index].isLiked ?? false,
+                    callback: () {
+                      controller.mobileList[index].isLiked =
+                          !(controller.mobileList[index].isLiked ?? false);
+                      controller.mobileList.refresh();
+                    }),
+              )),
     );
   }
 }
@@ -193,10 +206,10 @@ class CommonMobileItem extends StatelessWidget {
                   child: GestureDetector(
                     onTap: callback,
                     child: isLiked
-                          ? const Icon(Icons.favorite,
-                              size: 20, color: Colors.red)
-                          : const Icon(Icons.favorite_border_outlined,
-                              size: 20, color: Colors.red),
+                        ? const Icon(Icons.favorite,
+                            size: 20, color: Colors.red)
+                        : const Icon(Icons.favorite_border_outlined,
+                            size: 20, color: Colors.red),
                   ),
                 )
               ],

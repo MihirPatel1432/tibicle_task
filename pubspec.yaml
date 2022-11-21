@@ -27,6 +27,7 @@ dependencies:
   shimmer: ^2.0.0
   connectivity: ^3.0.6
   cached_network_image: ^3.2.2
+  carousel_indicator: ^1.0.6
 
 
 

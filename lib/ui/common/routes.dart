@@ -4,6 +4,8 @@ import 'package:flutterprojectsetup/ui/dashboard/presentation/views/dashboard_vi
 import 'package:flutterprojectsetup/ui/dashboard/presentation/views/profile_view.dart';
 import 'package:flutterprojectsetup/ui/home/binding/home_binding.dart';
 import 'package:flutterprojectsetup/ui/home/view/home_view.dart';
+import 'package:flutterprojectsetup/ui/mobile_detail/binding/mobile_detail_binding.dart';
+import 'package:flutterprojectsetup/ui/mobile_detail/view/mobile_detail_view.dart';
 import 'package:get/get.dart';
 
 class RouteName {
@@ -13,6 +15,7 @@ class RouteName {
   static const String root = '/';
   static const String profilePage = '/profile';
   static const String home = '/home';
+  static const String mobileDetail = '/mobile_detail';
 }
 
 class Routes {
@@ -27,7 +30,11 @@ class Routes {
     GetPage(
         name: RouteName.home,
         page: () => const HomeView(),
-        binding: HomeBinding())
+        binding: HomeBinding()),
+    GetPage(
+        name: RouteName.mobileDetail,
+        page: () => const MobileDetailView(),
+        binding: MobileDetailBinding())
   ];
   static final commonRoutes = <String, WidgetBuilder>{};
 }
