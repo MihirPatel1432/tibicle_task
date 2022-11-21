@@ -109,10 +109,10 @@ class FavouriteTab extends StatelessWidget {
                       key: Key(controller.mobileList[index].name ?? 'user'),
                       trailingActions: [
                         SwipeAction(
-                          icon: const Icon(Icons.delete),
-                            onTap: (value){
-                            controller.mobileList[index].isLiked = false;
-                            controller.mobileList.refresh();
+                            icon: const Icon(Icons.delete),
+                            onTap: (value) {
+                              controller.mobileList[index].isLiked = false;
+                              controller.mobileList.refresh();
                             })
                       ],
                       child: CommonMobileItem(
@@ -223,7 +223,7 @@ class CommonMobileItem extends StatelessWidget {
             imageUrl: image,
             width: 400.w,
             progressIndicatorBuilder: (_, __, ___) =>
-                const CircularProgressIndicator(),
+                const Center(child: CircularProgressIndicator()),
           ),
           SizedBox(width: 30.w),
           Expanded(
